@@ -11,7 +11,9 @@
 		}
 	    ,{
             "path" : "pages/search/search",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "搜索预告片"
+			}
         }
         ,{
             "path" : "pages/me/me",
