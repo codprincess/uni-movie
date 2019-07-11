@@ -16,6 +16,14 @@
             "path" : "pages/me/me",
             "style" : {}
         }
+        ,{
+            "path" : "components/helloComp/helloComp",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/scoreStar/scoreStar",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
