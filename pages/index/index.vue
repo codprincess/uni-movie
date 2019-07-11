@@ -108,6 +108,32 @@
 				<view class="hot-title">猜你喜欢</view>
 			</view>
 		</view>
+		<!--进行数据渲染-->
+		<view class="page-block guess-u-like">
+			<view class="single-like-movie" v-for="(guess,gindex) in guessULike" :key="gindex">
+				<image :src="guess.cover" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						{{guess.name}}
+					</view>
+					
+					<score-star innerScore="9.1" showNum="0"></score-star>
+					<view class="movie-info">
+						{{guess.basicInfo}}
+					</view>
+					<view class="movie-info">
+						{{guess.releaseDate}}
+					</view>
+				</view>
+				<view class="movie-oper" :data-gindex="gindex" @click="praiseMe">
+					<image src="../../static/icon/zan.png" class="praise-ico"></image>
+					<view class="praise-me">点赞</view>
+					<view :animation="animationDataArr[gindex]" class="praise-me animation-opacity">+1</view>
+				</view>
+			</view>
+		</view>
+		<!--数据渲染部分结束-->
+	
 		<view class="page-block guess-u-like">
 			<view class="single-like-movie">
 				<image src="../../static/hot/1.jpg" class="like-movie"></image>
@@ -115,7 +141,73 @@
 					<view class="movie-title">
 						复仇者联盟4
 					</view>
-					<!--评分-->
+					
+					<score-star innerScore="9.1" showNum="0"></score-star>
+					<view class="movie-info">
+						2019 / 美国 / 科幻 / 动作
+					</view>
+					<view class="movie-info">
+						安东尼·罗素、乔·罗素
+					</view>
+				</view>
+				<view class="movie-oper" @click="praiseMe">
+					<image src="../../static/icon/zan.png" class="praise-ico"></image>
+					<view class="praise-me">点赞</view>
+					<view :animation="animationData" class="praise-me animation-opacity">+1</view>
+				</view>
+			</view>
+			
+			
+			<view class="single-like-movie">
+				<image src="../../static/hot/1.jpg" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						复仇者联盟4
+					</view>
+					
+					<score-star innerScore="9.1" showNum="0"></score-star>
+					<view class="movie-info">
+						2019 / 美国 / 科幻 / 动作
+					</view>
+					<view class="movie-info">
+						安东尼·罗素、乔·罗素
+					</view>
+				</view>
+				<view class="movie-oper" @click="praiseMe">
+					<image src="../../static/icon/zan.png" class="praise-ico"></image>
+					<view class="praise-me">点赞</view>
+					<view :animation="animationData" class="praise-me animation-opacity">+1</view>
+				</view>
+			</view>
+			
+			<view class="single-like-movie">
+				<image src="../../static/hot/1.jpg" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						复仇者联盟4
+					</view>
+					
+					<score-star innerScore="9.1" showNum="0"></score-star>
+					<view class="movie-info">
+						2019 / 美国 / 科幻 / 动作
+					</view>
+					<view class="movie-info">
+						安东尼·罗素、乔·罗素
+					</view>
+				</view>
+				<view class="movie-oper" @click="praiseMe">
+					<image src="../../static/icon/zan.png" class="praise-ico"></image>
+					<view class="praise-me">点赞</view>
+					<view :animation="animationData" class="praise-me animation-opacity">+1</view>
+				</view>
+			</view>
+			<view class="single-like-movie">
+				<image src="../../static/hot/1.jpg" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						复仇者联盟4
+					</view>
+					
 					<score-star innerScore="9.1" showNum="0"></score-star>
 					<view class="movie-info">
 						2019 / 美国 / 科幻 / 动作
@@ -131,6 +223,8 @@
 				</view>
 			</view>
 		</view>
+
+		
 		<!--猜你喜欢结束-->
 	</view>
 </template>
@@ -146,18 +240,22 @@
 				carouselList:[],
 				hotList:[],
 				hotTrailer:[],
-				animationData:{}
+				animationData:{},
+				animationDataArr:[],
+				guessULike:[]
 			}
 		},
 		onUnload(){
 			//页面卸载的时候,清楚动画数据
 			this.animationData = {};
+			this.animationDataArr = [];
 		},
 		onLoad() {
 			var _this = this;
 			
 			//在创建页面时,创建一个临时动画对象
 			_this.animation = uni.createAnimation();
+			
 			
 			//获取服务器地址
 			var serverUrl = common.serverUrl;
@@ -205,23 +303,43 @@
 				}
 			})
 			
+			//查询猜你喜欢的数据列表
+			uni.request({
+				url:serverUrl+'/index/guessULike',
+				method:	'POST',
+				success: (res) => {
+					if(res.data.status == 200){
+						_this.guessULike = res.data.data;
+					}
+				}
+			})
+			
 			
 		},
 		methods: {
 			//实现点赞效果
-			praiseMe(){
+			praiseMe(e){
+				var gIndex = e.currentTarget.dataset.gindex;
+				console.log(gIndex);
+				
 				this.animation.translateY(-60).opacity(1).step({ 
 					duration: 1000 ,
 				});
 				//导出动画数据到view组件,实现组件的动画效果
-				this.animationData = this.animation.export();
+				//无数据渲染的时候
+				 this.animationData = this.animation.export();
+				
+				//有数据渲染的时候
+				// this.animationData = this.animation;
+				// this.animationDataArr[gIndex] = this.animationData.export();
 				
 				//还原点赞效果
 				setTimeout(function() {
 					this.animation.translateY(0).opacity(0).step({
 						duration:0 ,
 					});
-					this.animationData = this.animation.export();
+					 this.animationData = this.animation.export();
+					//this.animationDataArr[gIndex] = this.animationData.export();
 				}.bind(this), 500);
 			}
 		},
