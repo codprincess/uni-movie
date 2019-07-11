@@ -15,6 +15,101 @@
 				<image :src="list.image" class="carousel"></image>
 			</swiper-item> -->
 		</swiper>
+		<!--热门-->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icon/hot.png" class="hot-ico"></image>
+				<view class="hot-title">热门电影</view>
+			</view>
+		</view>
+		
+		<scroll-view scroll-x="true" class="page-block hot">
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/hot/1.jpg" class="poster"></image>
+					<view class="movie-name">复仇者联盟复4</view>
+				</view>
+				<!--评分-->
+				<view class="movie-score-wapper">
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/notstar.png" class="star-ico"></image>
+					<view class="movie-score">
+						9.1
+					</view>
+				</view>
+			</view>
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/hot/2.jpg" class="poster"></image>
+					<view class="movie-name">电影大冒险</view>
+				</view>
+				<view class="movie-score-wapper">
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/notstar.png" class="star-ico"></image>
+					<view class="movie-score">
+						9.1
+					</view>
+				</view>
+			</view>
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/hot/3.jpg" class="poster"></image>
+					<view class="movie-name">被偷走的那五年</view>
+				</view>
+				<view class="movie-score-wapper">
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/notstar.png" class="star-ico"></image>
+					<view class="movie-score">
+						9.1
+					</view>
+				</view>
+			</view>
+			
+			<view class="single-poster">
+				<view class="poster-wapper">
+					<image src="../../static/hot/4.jpg" class="poster"></image>
+					<view class="movie-name">哈利波特与死亡圣器</view>
+				</view>
+				<view class="movie-score-wapper">
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/notstar.png" class="star-ico"></image>
+					<view class="movie-score">
+						9.1
+					</view>
+				</view>
+			</view>
+			<!--动态渲染模块-->
+			<!-- <view class="single-poster" v-for="(item,index) in hotList" :key="index">
+				<view class="poster-wapper">
+					<image :src="item.cover" class="poster"></image>
+					<view class="movie-name">item.name</view>
+				</view>
+				<view class="movie-score-wapper">
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/star.png" class="star-ico"></image>
+					<image src="../../static/icon/notstar.png" class="star-ico"></image>
+					<view class="movie-score">
+						9.1
+					</view>
+				</view>
+			</view> -->
+			
+		</scroll-view>
+		<!--热门结束-->
 	</view>
 </template>
 
@@ -23,7 +118,8 @@
 	export default {
 		data() {
 			return {
-				carouselList:[]
+				carouselList:[],
+				hotList:[]
 			}
 		},
 		onLoad() {
@@ -47,6 +143,18 @@
 					console.log('轮播图数据',res.data);
 					if(res.data.status == 200){
 						_this.carouselList = res.data.data;
+					}
+				}
+			})
+			
+			//查询热门电影
+			uni.request({
+				url:serverUrl+'/index/movie/hot?type=hot',
+				method:'POST',
+				success: (res) => {
+					console.log('获取热门电影数据',res.data);
+					if(res.data.status == 200){
+						_this.hotList = res.data.data;
 					}
 				}
 			})
