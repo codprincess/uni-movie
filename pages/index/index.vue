@@ -253,8 +253,13 @@
 		onLoad() {
 			var _this = this;
 			
-			//在创建页面时,创建一个临时动画对象
-			_this.animation = uni.createAnimation();
+			//解决跨端问题
+			// #ifndef APP-PLUS || MP-WEIXIN
+				//在创建页面时,创建一个临时动画对象
+				_this.animation = uni.createAnimation();
+			// #endif
+			
+			
 			
 			
 			//获取服务器地址
@@ -319,6 +324,7 @@
 		methods: {
 			//实现点赞效果
 			praiseMe(e){
+				// #ifndef APP-PLUS || MP-WEIXIN
 				var gIndex = e.currentTarget.dataset.gindex;
 				console.log(gIndex);
 				
@@ -341,6 +347,7 @@
 					 this.animationData = this.animation.export();
 					//this.animationDataArr[gIndex] = this.animationData.export();
 				}.bind(this), 500);
+				// #endif
 			}
 		},
 		

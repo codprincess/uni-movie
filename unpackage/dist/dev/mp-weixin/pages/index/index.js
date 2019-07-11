@@ -542,8 +542,8 @@ var _scoreStar = _interopRequireDefault(__webpack_require__(/*! ../../components
 //调用组件
 // import helloComp from "../../components/helloComp/helloComp.vue";
 var _default = { data: function data() {return { carouselList: [], hotList: [], hotTrailer: [], animationData: {}, animationDataArr: [], guessULike: [] };}, onUnload: function onUnload() {//页面卸载的时候,清楚动画数据
-    this.animationData = {};this.animationDataArr = [];}, onLoad: function onLoad() {var _this = this; //在创建页面时,创建一个临时动画对象
-    _this.animation = uni.createAnimation(); //获取服务器地址
+    this.animationData = {};this.animationDataArr = [];}, onLoad: function onLoad() {var _this = this; //解决跨端问题
+    //获取服务器地址
     var serverUrl = _common.default.serverUrl; // //通过在main.js获取服务器地址
     // var serverUrl = _this.serverUrl;
     //请求轮播图的数据
@@ -551,14 +551,7 @@ var _default = { data: function data() {return { carouselList: [], hotList: [], 
     uni.request({ url: serverUrl + '/index/movie/hot?type=hot', method: 'POST', success: function success(res) {console.log('获取热门电影数据', res.data);if (res.data.status == 200) {_this.hotList = res.data.data;}} }); //获取热门预告片的数据
     uni.request({ url: serverUrl + '/index/movie/hot?type=trailer', method: "POST", success: function success(res) {if (res.data.status == 200) {_this.hotTrailer = res.data.data;}} }); //查询猜你喜欢的数据列表
     uni.request({ url: serverUrl + '/index/guessULike', method: 'POST', success: function success(res) {if (res.data.status == 200) {_this.guessULike = res.data.data;}} });}, methods: { //实现点赞效果
-    praiseMe: function praiseMe(e) {var gIndex = e.currentTarget.dataset.gindex;console.log(gIndex);this.animation.translateY(-60).opacity(1).step({ duration: 1000 }); //导出动画数据到view组件,实现组件的动画效果
-      //无数据渲染的时候
-      this.animationData = this.animation.export(); //有数据渲染的时候
-      // this.animationData = this.animation;
-      // this.animationDataArr[gIndex] = this.animationData.export();
-      //还原点赞效果
-      setTimeout(function () {this.animation.translateY(0).opacity(0).step({ duration: 0 });this.animationData = this.animation.export(); //this.animationDataArr[gIndex] = this.animationData.export();
-      }.bind(this), 500);} }, //注册组件
+    praiseMe: function praiseMe(e) {} }, //注册组件
   components: { // helloComp
     scoreStar: _scoreStar.default } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))

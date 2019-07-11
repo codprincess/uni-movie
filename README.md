@@ -8,3 +8,4 @@ uni-movie,uni-app应用实战
 #### video视频播放组件的使用
 #### 点赞效果的实现,使用createAnimation
 #### 数据渲染后点赞动画数组
+#### 动画组件跨端问题
