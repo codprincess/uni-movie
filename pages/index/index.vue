@@ -245,6 +245,11 @@
 				guessULike:[]
 			}
 		},
+		//下拉刷新
+		onPullDownRefresh() {
+			this.refresh();
+		},
+		
 		onUnload(){
 			//页面卸载的时候,清楚动画数据
 			this.animationData = {};
@@ -258,10 +263,6 @@
 				//在创建页面时,创建一个临时动画对象
 				_this.animation = uni.createAnimation();
 			// #endif
-			
-			
-			
-			
 			//获取服务器地址
 			var serverUrl = common.serverUrl;
 			
@@ -283,7 +284,7 @@
 						_this.carouselList = res.data.data;
 					}
 				}
-			})
+			});
 			
 			//查询热门电影
 			uni.request({
@@ -295,7 +296,7 @@
 						_this.hotList = res.data.data;
 					}
 				}
-			})
+			});
 			
 			//获取热门预告片的数据
 			uni.request({
@@ -306,22 +307,57 @@
 						_this.hotTrailer = res.data.data;
 					}
 				}
-			})
+			});
 			
+			_this.refresh();
 			//查询猜你喜欢的数据列表
-			uni.request({
-				url:serverUrl+'/index/guessULike',
-				method:	'POST',
-				success: (res) => {
-					if(res.data.status == 200){
-						_this.guessULike = res.data.data;
-					}
-				}
-			})
+			// uni.request({
+			// 	url:serverUrl+'/index/guessULike',
+			// 	method:	'POST',
+			// 	success: (res) => {
+			// 		if(res.data.status == 200){
+			// 			_this.guessULike = res.data.data;
+			// 		}
+			// 	}
+			// })
 			
 			
 		},
 		methods: {
+			refresh(){
+				var _this = this;
+			
+				uni.showLoading({
+					mask:true, //不可点击其他页面
+				});
+				uni.showNavigationBarLoading();//显示导航条
+				//获取服务器地址
+				var serverUrl = common.serverUrl;
+				
+				//查询猜你喜欢的数据列表
+				uni.request({
+					url:serverUrl+'/index/guessULike',
+					method:	'POST',
+					success: (res) => {
+						if(res.data.status == 200){
+							_this.guessULike = res.data.data;
+						}
+					},
+					complete: () => {
+						//对应上文的显示,有显示就有隐藏
+						//隐藏导航条loading
+						uni.hideNavigationBarLoading()
+						//将loading隐藏掉
+						uni.hideLoading();
+						//停止当前页面刷新
+						uni.stopPullDownRefresh();
+					}
+				})
+				
+				
+			},
+			
+			
 			//实现点赞效果
 			praiseMe(e){
 				// #ifndef APP-PLUS || MP-WEIXIN

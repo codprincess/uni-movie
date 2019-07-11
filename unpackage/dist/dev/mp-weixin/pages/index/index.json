@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "score-star": "/components/scoreStar/scoreStar"
   }

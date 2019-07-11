@@ -541,7 +541,8 @@ var _scoreStar = _interopRequireDefault(__webpack_require__(/*! ../../components
 //
 //调用组件
 // import helloComp from "../../components/helloComp/helloComp.vue";
-var _default = { data: function data() {return { carouselList: [], hotList: [], hotTrailer: [], animationData: {}, animationDataArr: [], guessULike: [] };}, onUnload: function onUnload() {//页面卸载的时候,清楚动画数据
+var _default = { data: function data() {return { carouselList: [], hotList: [], hotTrailer: [], animationData: {}, animationDataArr: [], guessULike: [] };}, //下拉刷新
+  onPullDownRefresh: function onPullDownRefresh() {this.refresh();}, onUnload: function onUnload() {//页面卸载的时候,清楚动画数据
     this.animationData = {};this.animationDataArr = [];}, onLoad: function onLoad() {var _this = this; //解决跨端问题
     //获取服务器地址
     var serverUrl = _common.default.serverUrl; // //通过在main.js获取服务器地址
@@ -549,8 +550,25 @@ var _default = { data: function data() {return { carouselList: [], hotList: [], 
     //请求轮播图的数据
     uni.request({ url: serverUrl + '/index/carousel/list', method: "POST", data: {}, header: {}, success: function success(res) {console.log('轮播图数据', res.data);if (res.data.status == 200) {_this.carouselList = res.data.data;}} }); //查询热门电影
     uni.request({ url: serverUrl + '/index/movie/hot?type=hot', method: 'POST', success: function success(res) {console.log('获取热门电影数据', res.data);if (res.data.status == 200) {_this.hotList = res.data.data;}} }); //获取热门预告片的数据
-    uni.request({ url: serverUrl + '/index/movie/hot?type=trailer', method: "POST", success: function success(res) {if (res.data.status == 200) {_this.hotTrailer = res.data.data;}} }); //查询猜你喜欢的数据列表
-    uni.request({ url: serverUrl + '/index/guessULike', method: 'POST', success: function success(res) {if (res.data.status == 200) {_this.guessULike = res.data.data;}} });}, methods: { //实现点赞效果
+    uni.request({ url: serverUrl + '/index/movie/hot?type=trailer', method: "POST", success: function success(res) {if (res.data.status == 200) {_this.hotTrailer = res.data.data;}} });_this.refresh(); //查询猜你喜欢的数据列表
+    // uni.request({
+    // 	url:serverUrl+'/index/guessULike',
+    // 	method:	'POST',
+    // 	success: (res) => {
+    // 		if(res.data.status == 200){
+    // 			_this.guessULike = res.data.data;
+    // 		}
+    // 	}
+    // })
+  }, methods: { refresh: function refresh() {var _this = this;uni.showLoading({ mask: true //不可点击其他页面
+      });uni.showNavigationBarLoading(); //显示导航条
+      //获取服务器地址
+      var serverUrl = _common.default.serverUrl; //查询猜你喜欢的数据列表
+      uni.request({ url: serverUrl + '/index/guessULike', method: 'POST', success: function success(res) {if (res.data.status == 200) {_this.guessULike = res.data.data;}}, complete: function complete() {//对应上文的显示,有显示就有隐藏
+          //隐藏导航条loading
+          uni.hideNavigationBarLoading(); //将loading隐藏掉
+          uni.hideLoading(); //停止当前页面刷新
+          uni.stopPullDownRefresh();} });}, //实现点赞效果
     praiseMe: function praiseMe(e) {} }, //注册组件
   components: { // helloComp
     scoreStar: _scoreStar.default } };exports.default = _default;

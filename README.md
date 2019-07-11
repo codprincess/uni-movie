@@ -9,3 +9,5 @@ uni-movie,uni-app应用实战
 #### 点赞效果的实现,使用createAnimation
 #### 数据渲染后点赞动画数组
 #### 动画组件跨端问题
+#### 开启下拉刷新
+#### loading交互
