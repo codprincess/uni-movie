@@ -76,6 +76,62 @@
 			
 		</scroll-view>
 		<!--热门结束-->
+		<!--热门预告片-->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icon/tari.png" class="hot-ico"></image>
+				<view class="hot-title">热门预告</view>
+			</view>
+		</view>
+		<view class="hot-movies page-block">
+			<video class="hot-movie-single" src="https://vfx.mtime.cn/Video/2019/07/11/mp4/190711092020039399_480.mp4" controls="">
+				
+			</video>
+			<video class="hot-movie-single" src="https://vfx.mtime.cn/Video/2019/07/11/mp4/190711095403507305_480.mp4" controls="">
+				
+			</video>
+			<!-- <video 
+				v-for="(item,index) in hotTrailer"
+				:src="item.trailer"
+				:poster="trailer.poster"
+				class="hot-movie-single"
+				controls>
+				
+			</video> -->
+		</view>
+		<!--热门预告结束-->
+		
+		<!--猜你喜欢-->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icon/like.png" class="hot-ico"></image>
+				<view class="hot-title">猜你喜欢</view>
+			</view>
+		</view>
+		<view class="page-block guess-u-like">
+			<view class="single-like-movie">
+				<image src="../../static/hot/1.jpg" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">
+						复仇者联盟4
+					</view>
+					<!--评分-->
+					<score-star innerScore="9.1" showNum="0"></score-star>
+					<view class="movie-info">
+						2019 / 美国 / 科幻 / 动作
+					</view>
+					<view class="movie-info">
+						安东尼·罗素、乔·罗素
+					</view>
+				</view>
+				<view class="movie-oper" @click="praiseMe">
+					<image src="../../static/icon/zan.png" class="praise-ico"></image>
+					<view class="praise-me">点赞</view>
+					<view :animation="animationData" class="praise-me animation-opacity">+1</view>
+				</view>
+			</view>
+		</view>
+		<!--猜你喜欢结束-->
 	</view>
 </template>
 
@@ -88,11 +144,21 @@
 		data() {
 			return {
 				carouselList:[],
-				hotList:[]
+				hotList:[],
+				hotTrailer:[],
+				animationData:{}
 			}
+		},
+		onUnload(){
+			//页面卸载的时候,清楚动画数据
+			this.animationData = {};
 		},
 		onLoad() {
 			var _this = this;
+			
+			//在创建页面时,创建一个临时动画对象
+			_this.animation = uni.createAnimation();
+			
 			//获取服务器地址
 			var serverUrl = common.serverUrl;
 			
@@ -127,9 +193,37 @@
 					}
 				}
 			})
+			
+			//获取热门预告片的数据
+			uni.request({
+				url:serverUrl+'/index/movie/hot?type=trailer',
+				method:"POST",
+				success: (res) => {
+					if(res.data.status == 200){
+						_this.hotTrailer = res.data.data;
+					}
+				}
+			})
+			
+			
 		},
 		methods: {
-			
+			//实现点赞效果
+			praiseMe(){
+				this.animation.translateY(-60).opacity(1).step({ 
+					duration: 1000 ,
+				});
+				//导出动画数据到view组件,实现组件的动画效果
+				this.animationData = this.animation.export();
+				
+				//还原点赞效果
+				setTimeout(function() {
+					this.animation.translateY(0).opacity(0).step({
+						duration:0 ,
+					});
+					this.animationData = this.animation.export();
+				}.bind(this), 500);
+			}
 		},
 		
 		//注册组件

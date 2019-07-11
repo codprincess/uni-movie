@@ -59,3 +59,79 @@
 	color: grey;
 	margin-left:8upx;
 }
+.hot-movies{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0upx 20upx 20upx 20upx;
+}
+.hot-movie-single{
+	width: 350upx;
+	height: 220upx;
+	margin-top: 10upx;
+}
+
+.guess-u-like{
+	display: flex;
+	flex-direction: column;
+}
+
+.single-like-movie{
+	display: flex;
+	flex-direction: row;
+	padding: 30upx 20upx;
+	justify-content: space-between;
+}
+.like-movie{
+	width: 180upx;
+	height: 240upx;
+	border-radius: 5%;
+}
+.movie-desc{
+	width: 340upx;
+	display: flex;
+	flex-direction: column;
+}
+
+/**
+ * 点赞
+ */
+.movie-oper{
+	width: 140upx;
+	display:flex ;
+	flex-direction: column;
+	justify-content: center;
+	border-left: dashed 2px;
+	border-left-color: #FEAB2A;
+	padding-right: 20upx;
+	
+}
+.praise-ico{
+	width: 50upx;
+	height: 50upx;
+	align-self: center;
+	
+}
+.praise-me{
+	font-size: 14px;
+	color: #feab2a;
+	align-self: center;
+}
+.movie-title{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.movie-info{
+	color: #808080;
+	font-size: 14px;
+}
+
+/**
+ * 点赞效果动画
+ */
+.animation-opacity{
+	font-size:bl ;
+	opacity: 0;
+}

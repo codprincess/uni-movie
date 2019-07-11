@@ -1,0 +1,1 @@
+<view>{{''+msg+''}}<view><input class="txt" type="text" value="{{myval}}"/></view></view>
