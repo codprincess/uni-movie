@@ -14,9 +14,9 @@
 		</view>
 		<view class="movie-list page-block">
 			<!--数据渲染-->
-			<view class="movie-wapper" v-for="(item,index) in searchList" :key="index">
+			<!-- <view class="movie-wapper" v-for="(item,index) in searchList" :key="index">
 				<image :src="item.cover" class="poster"></image>
-			</view>
+			</view> -->
 			<!--数据渲染结束-->
 			<view class="movie-wapper">
 				<image src="../../static/hot/2.jpg" class="poster"></image>
@@ -95,6 +95,19 @@
 					uni.stopPullDownRefresh();
 				}
 			})
+		},
+		//页面上拉触底事件处理函数
+		onReachBottom() {
+			var _this = this;
+			var page = _this.page+1;
+			var keywords = _this.keywords;
+			var totalPages = _this.totalPages;
+			//如果当前需要分页的分页数和总页数相等,就不分页
+			if(page>totalPages){
+				return;
+			}
+			//分页处理
+			_this.pageSearchList(keywords,page,15)
 		},
 		methods: {
 			pageSearchList(keywords,page,pageSize){
