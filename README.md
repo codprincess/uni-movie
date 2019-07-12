@@ -13,4 +13,4 @@ uni-movie,uni-app应用实战
 #### loading交互
 #### 跨域问题处理解决(manifest.json)
 #### 搜索页面(导航栏置顶)
-#### 
+#### 关键字搜索接口

@@ -98,7 +98,30 @@
 		},
 		methods: {
 			pageSearchList(keywords,page,pageSize){
-				
+				var _this = this;
+				uni.showLoading({
+					mask:true,
+					title:"请稍等哟~~~"
+				});
+				uni.showNavigationBarLoading();
+				var serverUrl = _this.serverUrl;
+				uni.request({
+					url:serverUrl+'/search/list?keywords='+keywords+'&page='+page+'&pageSize='+pageSize,
+					method:'POST',
+					success: (res) => {
+						console.log('搜索到的内容',res);
+						if(res.data.status == 200){
+							_this.searchTempList = res.data.data.rows;
+							console.log(_this.searchTempList)
+							//数组与数组的拼接
+							_this.searchList = _this.searchList.concat(searchTempList);
+							console.log(_this.searchList);
+							//获取页数
+							_this.totalPages = res.data.data.total;
+							_this.page = page;//覆盖当前页面的page
+						}
+					}
+				})
 			},
 			searchMe(e){
 				var _this = this;
@@ -108,6 +131,7 @@
 				_this.keywords = value;
 				//先初始化为空
 				_this.searchList = [];
+				_this.pageSearchList(value,1,15);
 			}
 		}
 	}

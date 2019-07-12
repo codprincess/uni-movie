@@ -259,7 +259,7 @@
 			var _this = this;
 			
 			//解决跨端问题
-			// #ifndef APP-PLUS || MP-WEIXIN
+			// #ifndef APP-PLUS || MP-WEIXIN || H5
 				//在创建页面时,创建一个临时动画对象
 				_this.animation = uni.createAnimation();
 			// #endif
