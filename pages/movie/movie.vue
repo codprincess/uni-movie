@@ -141,6 +141,12 @@
 			//获取上个页面传入的参数
 			var detailId = params.detailId;
 			
+			//根据api改变导航栏颜色
+			uni.setNavigationBarColor({
+				frontColor:"#FFFFFF",
+				backgroundColor:"#000000"
+			})
+			
 			//获取预告片的详情
 			var serverUrl = _this.serverUrl;
 			uni.request({
