@@ -21,3 +21,4 @@ uni-movie,uni-app应用实战
 #### 渐进式导航栏设置(transparent,setNavigationBarColor)
 #### 预览图片设置
 #### 数组拼接和index递增
+#### 自定义预览

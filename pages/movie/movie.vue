@@ -11,7 +11,20 @@
 		<!--视频播放结束-->
 		<!--影片基本信息-->
 		<view class="movie-info">
-			<image src="../../static/hot/8.jpg" class="cover" mode=""></image>
+			<navigator url="../cover/cover">
+				<image 
+					src="../../static/hot/8.jpg" 
+					class="cover" mode=""
+					></image>
+			</navigator>
+			
+			<!-- <navigator :url="'../cover/cover?cover='+searchInfo.cover">
+				<image 
+					:src="searchInfo.cover" 
+					class="cover" mode=""
+					></image>
+			</navigator> -->	
+			
 			<view class="movie-desc">
 				<view class="movie-title">被偷走的那五年</view>
 				<view class="basic-info">2018 / 中国 / 青春 / 青春物语</view>
