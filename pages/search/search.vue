@@ -14,12 +14,16 @@
 		</view>
 		<view class="movie-list page-block">
 			<!--数据渲染-->
-			<!-- <view class="movie-wapper" v-for="(item,index) in searchList" :key="index">
-				<image :src="item.cover" class="poster"></image>
-			</view> -->
+			<view class="movie-wapper" v-for="(item,index) in searchList" :key="index">
+				<image 
+					:src="item.cover" 
+					:data-detailId="item.id" 
+					@click="showDetail"
+					class="poster"></image>
+			</view>
 			<!--数据渲染结束-->
 			<view class="movie-wapper">
-				<image src="../../static/hot/2.jpg" class="poster"></image>
+				<image @click="showDetail2" src="../../static/hot/2.jpg" class="poster"></image>
 			</view>
 			<view class="movie-wapper">
 				<image src="../../static/hot/3.jpg" class="poster"></image>
@@ -145,6 +149,36 @@
 				//先初始化为空
 				_this.searchList = [];
 				_this.pageSearchList(value,1,15);
+			},
+			
+			//查电影预告详情
+			showDetail(e){
+				var detailId = e.currentTarget.dataset.detailid;
+				console.log(detailId);
+				uni.navigateTo({
+					url:"../movie/movie?detailId="+detailId
+				})
+			},
+			
+			//无数据处理时,只针对固定跳转
+			showDetail2(){
+				//有返回键但是没有底部导航栏
+				//页面跳转接口api
+				uni.navigateTo({
+					url:"../movie/movie"
+				})
+				
+				//要在tabBar里面有设置才能跳转
+				// uni.switchTab({
+				// 	url:"../me/me"
+				// })
+				// uni.reLaunch({
+				// 	url:"../movie/movie"
+				// })
+				//没有返回箭头,但是有底部导航栏
+				// uni.redirectTo({
+				// 	url:"../movie/movie"
+				// })
 			}
 		}
 	}

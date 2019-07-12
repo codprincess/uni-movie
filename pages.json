@@ -27,6 +27,10 @@
             "path" : "components/scoreStar/scoreStar",
             "style" : {}
         }
+        ,{
+            "path" : "pages/movie/movie",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
