@@ -62,9 +62,16 @@
 				:key="index"
 				class="plot-image"
 				mode="aspectFill"
+				@click="lookMe"
+				:data-index="index"
 			   src="dirItem.image"></image> -->
 			   
-			<image src="../../static/hot/3.jpg" class="plot-image" mode="aspectFill"></image>
+			<image 
+				src="../../static/hot/3.jpg" 
+				class="plot-image" 
+				mode="aspectFill"
+				@click="lookMe"
+				></image>
 			<image src="../../static/hot/2.jpg" class="plot-image" mode="aspectFill"></image>
 			<image src="../../static/hot/4.jpg" class="plot-image" mode="aspectFill"></image>
 			<image src="../../static/hot/3.jpg" class="plot-image" mode="aspectFill"></image>
@@ -132,6 +139,7 @@
 				plotPicsArray:[],//剧照
 				directorArray:[],//导演列表
 				actorArray:[],//演员
+				newStaffArray:[]
 				
 			}
 		},
@@ -190,6 +198,40 @@
 			})
 		},
 		methods: {
+			
+			//点击预览剧照
+			lookMe(e){
+				var _this = this;
+				var index = e.currentTarget.dataset.index;
+				console.log(index);
+				uni.previewImage({
+					current:_this.plotPicsArray[index],
+					urls:_this.plotPicsArray
+				})
+			},
+			
+			//演职人员,实现数组拼接
+			lookStaffs(e){
+				var _this = this;
+				var staffIndex = e.currentTarget.dataset.staffindex;
+				//拼接导演和演员的数组,成为一个新的数组
+				var directorArray = _this.directorArray;
+				var actorArray = _this.actorArray;
+				var newStaffArray = [];
+				newStaffArray = newStaffArray.concat(directorArray).concat(actorArray);
+			
+				var urls = [];
+				for(var i=0;i<newStaffArray.length;i++){
+					var tempPhoto = newStaffArray[i].photo;
+					urls.push(tempPhoto);
+					console.log(urls);
+				}
+				
+				uni.previewImage({
+					current:urls[staffIndex],
+					urls:urls
+				})
+			}
 			
 		},
 		components:{

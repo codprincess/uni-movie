@@ -19,4 +19,5 @@ uni-movie,uni-app应用实战
 #### 详情页面
 #### 详情页面api对接和数据渲染
 #### 渐进式导航栏设置(transparent,setNavigationBarColor)
-#### 
+#### 预览图片设置
+#### 数组拼接和index递增
