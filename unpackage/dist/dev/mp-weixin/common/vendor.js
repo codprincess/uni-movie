@@ -7287,7 +7287,7 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "F:\\学习�
 
 _vue.default.config.productionTip = false;
 //挂载
-// Vue.prototype.serverUrl = "http://www.imovietrailer.com/superhero";
+_vue.default.prototype.serverUrl = "http://www.imovietrailer.com/superhero";
 
 _vue.default.prototype.getGlobalUser = function (key) {
   var userInfo = uni.getStorageSync("globalUser");

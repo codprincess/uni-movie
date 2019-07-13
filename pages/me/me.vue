@@ -40,7 +40,7 @@
 	export default {
 		data() {
 			return {
-				userIsLogin:true
+				userIsLogin:false
 			}
 		},
 		// onShow() {

@@ -50,7 +50,7 @@ var _default =
 {
   data: function data() {
     return {
-      userIsLogin: true };
+      userIsLogin: false };
 
   },
   // onShow() {

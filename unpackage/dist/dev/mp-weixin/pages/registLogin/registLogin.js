@@ -31,7 +31,73 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _common = _interopRequireDefault(__webpack_require__(/*! ../../common/common.js */ "F:\\学习教程\\uni-movie\\common\\common.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58,20 +124,27 @@ var _default = { data: function data() {return {};}, methods: { formSubmit: func
       var _this = this;var username = e.detail.value.username;var password = e.detail.value.password; //console.log(username,password);
       //发起注册或者登录请求
       //获取服务器地址
-      var serverUrl = _common.default.serverUrl;uni.request({ url: serverUrl + '/user/registOrLogin', data: { "username": username, "password": password }, method: "POST", success: function success(res) {console.log(res);if (res.data.status == 200) {
-            var userInfo = res.data,data;
-            //保存变量到全局缓存
-            uni.setStorageSync("globalUser", userInfo);
-            //用户跳转
-            uni.switchTab({
-              url: "../me/me" });
+      var serverUrl = _common.default.serverUrl;uni.request({ url: serverUrl + '/user/registOrLogin', data: { "username": username, "password": password }, method: "POST", success: function success(res) {console.log(res);if (res.data.status == 200) {var userInfo = res.data,data; //保存变量到全局缓存
+            uni.setStorageSync("globalUser", userInfo); //用户跳转
+            uni.switchTab({ url: "../me/me" });} else {uni.showToast({ title: res.data.msg, duration: 1000 });}} });}, //实现微信登录仅是微信小程序端
+    wxLogin: function wxLogin(e) {// debugger;
+      var _this = this;console.log(e); //获取微信用户的基本消息
+      var userInfo = e.detail.userInfo; //实现微信登录
+      uni.login({ provider: "weixin", //得到的服务供应商
+        success: function success(loginResult) {console.log(loginResult); //获取微信登录的code:授权码
+          var code = loginResult.code; // 设置登录到哪个对于的微信小程序，大家可以根据自己的后端去实现业务参数
+          // [0:首页预告][1:电影预告][2:学院电影预告]
+          var loginToWhichMP = 1;uni.request({ url: _this.serverUrl + '/mpWXLogin/' + code, data: { "avatarUrl": userInfo.avatarUrl, "nickName": userInfo.nickName, "whichMP": loginToWhichMP }, method: "POST", success: function success(userResult) {
+              console.log(userResult);
+              var userInfo = userResult.data.data;
+              //保存用户信息到缓存里
+              uni.setStorageSync("globalUser", userInfo);
+              //切换页面跳转
+              uni.switchTab({
+                url: "../me/me" });
 
-          } else {
-            uni.showToast({
-              title: res.data.msg,
-              duration: 1000 });
+            } });
 
-          }
         } });
 
     } } };exports.default = _default;

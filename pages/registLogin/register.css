@@ -36,3 +36,63 @@
 .graywords {
 	color: #EAEAEA;
 }
+
+/* 第三方登录 start */
+.third-wapper {
+	width: 100%;
+	/* 固定底部 */
+	/* bottom: 0;
+	position: fixed; */
+	
+	margin-top: 60upx;
+	
+}
+
+.third-line {
+	display: flex;
+	flex-direction: row;
+	justify-content: center
+}
+
+.third-words {
+	color: #A9A9A9;
+	font-size: 13px;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.single-line {
+	padding: 15upx 20upx;
+	width: 25%;
+	align-items: center;
+}
+
+.third-icos-wapper {
+	margin-top: 30upx;
+	
+	display: flex;
+	flex-direction: row;
+	justify-content: center
+}
+
+.third-ico {
+	width: 60upx;
+	height: 60upx;
+}
+
+.third-btn-ico {
+	background-image:url(http://122.152.205.72:88/group1/M00/00/05/CpoxxFxFO-yAOjTaAAATCIZEzRU503.png);
+	width: 60upx;
+	height: 60upx;
+	background-color: white;
+	background-size: 60upx 60upx;
+	background-repeat:no-repeat;
+	border:none;
+	padding: 0;
+}
+button::after{
+	border: none;
+}
+/* 第三方登录 end */
