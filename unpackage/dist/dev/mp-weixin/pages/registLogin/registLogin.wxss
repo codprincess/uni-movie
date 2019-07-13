@@ -1,0 +1,54 @@
+/* 头像 start */
+.face-wapper {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	
+	margin-top: 120rpx;
+	margin-bottom: 120rpx;
+}
+.face {
+	width: 160rpx;
+	height: 160rpx;
+}
+/* 注册登录 start */
+.info-wapper {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	
+	border-bottom: solid 1px #DBDBDA;
+	
+	padding-bottom: 20rpx;
+}
+.words-lbl {
+	color: #808080;
+}
+.input {
+	width: 500rpx;
+	margin-left: 40rpx;
+}
+.graywords {
+	color: #EAEAEA;
+}
+

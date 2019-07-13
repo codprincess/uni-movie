@@ -1,0 +1,183 @@
+
+.movie-score-wapper{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+}
+.star-ico{
+	width: 30rpx;
+	height: 30rpx;
+	margin-top: 6rpx;
+}
+.movie-score{
+	font-size: 12rpx;
+	color: grey;
+	margin-left:8rpx;
+}
+
+.page{
+	/* background-color: black; */
+}
+.movie{
+	width: 100%;
+	height: 440rpx;
+}
+.movie-info{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	background-color: #f7f4f9;
+	padding: 40rpx 20rpx;
+}
+.cover{
+	width: 280rpx;
+	height: 380rpx;
+}
+.movie-desc{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	margin-left: 30rpx;
+	width: 400rpx;
+}
+.movie-title{
+	font-size: 30px;
+}
+.basic-info{
+	color: darkgray;
+	font-size: 14px;
+	line-height: 38rpx;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+}
+.score-block{
+	background-color: #FFFFFF;
+	margin-top: 20rpx;
+	width: 360rpx;
+	height: 90rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	padding: 20rpx;
+	-webkit-box-shadow:3px 2px 10px #dedede ;
+	        box-shadow:3px 2px 10px #dedede ;
+}
+.big-score{
+}
+.score-stars{
+}
+.score-words{
+	font-size: 12px;
+	color: gray;
+}
+.movie-score{
+	font-size: 26px;
+	font-weight: bold;
+	color: #FEAB2A;
+	margin-left: 8rpx;
+	line-height: 60rpx;
+}
+.prise-counts{
+	font-size: 12px;
+	height: 60rpx;
+	line-height: 60rpx;
+	color: gray;
+}
+.plots-block{
+	background-color: #f7f4f9;
+	padding: 20rpx 40rpx;
+}
+.plots-title{
+	color: #a9a9a9;
+	font-size: 14px;
+}
+.plots-desc{
+	font-size: 16px;
+	margin-top: 10rpx;
+}
+.scroll-block{
+	background-color: #f7f4f9;
+	padding: 20rpx 40rpx;
+	/* display: flex;
+	flex-direction: column; */
+}
+.plots-title{
+}
+.scroll-list{
+	width: 100%;
+	white-space: nowrap;
+	margin-top: 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+}
+.plot-image{
+	width: 220rpx;
+	height: 320rpx;
+	margin-right: 10rpx;
+}
+.actor-wapper{
+	display: inline-block;
+}
+.single-actor{
+	width: 170rpx;
+	height: 240rpx;
+	margin-right: 10rpx;
+}
+.actor-name{
+	width: 170rpx;
+	text-align: center;
+	font-size:14px;
+	color: #808080;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+}
+.actor-role{
+	width: 170rpx;
+	text-align: center;
+	font-size:14px;
+	color: #808080;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+}
+

@@ -17,7 +17,14 @@
         }
         ,{
             "path" : "pages/me/me",
-            "style" : {}
+            "style" : {
+				"app-plus":{
+					"titleNView":false  //禁用原生导航栏
+				},
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#ffd655"
+			}
         }
         ,{
             "path" : "components/helloComp/helloComp",
@@ -51,6 +58,10 @@
         }
         ,{
             "path" : "pages/cover/cover",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/registLogin/registLogin",
             "style" : {}
         }
     ],

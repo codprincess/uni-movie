@@ -1,0 +1,38 @@
+/* 头像 start */
+.face-wapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	
+	margin-top: 120upx;
+	margin-bottom: 120upx;
+}
+
+.face {
+	width: 160upx;
+	height: 160upx;
+}
+
+/* 注册登录 start */
+.info-wapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	
+	border-bottom: solid 1px #DBDBDA;
+	
+	padding-bottom: 20upx;
+}
+
+.words-lbl {
+	color: #808080;
+}
+
+.input {
+	width: 500upx;
+	margin-left: 40upx;
+}
+
+.graywords {
+	color: #EAEAEA;
+}

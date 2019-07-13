@@ -67,7 +67,15 @@
 
 
 
+
+
+
+
 var _common = _interopRequireDefault(__webpack_require__(/*! ../../common/common.js */ "F:\\学习教程\\uni-movie\\common\\common.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
 //
 //
 //
@@ -129,9 +137,59 @@ var _default = { data: function data() {return { searchList: [], keywords: '', p
     var _this = this; //显示loading
     uni.showLoading({ mask: true, title: "正在加载~~~" }); //显示导航条加载
     uni.showNavigationBarLoading(); //获取服务器地址
-    var serverUrl = _common.default.serverUrl;uni.request({ url: serverUrl + '/search/list?keywords=&page=&pageSize=', method: 'POST', success: function success(res) {console.log('获取搜索的数据', res.data);if (res.data.status == 200) {_this.searchList = res.data.data.rows;}}, complete: function complete() {uni.hideNavigationBarLoading();uni.hideLoading();uni.stopPullDownRefresh();} });}, methods: { pageSearchList: function pageSearchList(keywords, page, pageSize) {}, searchMe: function searchMe(e) {var _this = this; //获取搜索数据
-      var value = e.detail.value;console.log(value);_this.keywords = value; //先初始化为空
-      _this.searchList = [];} } };exports.default = _default;
+    var serverUrl = _common.default.serverUrl;uni.request({ url: serverUrl + '/search/list?keywords=&page=&pageSize=', method: 'POST', success: function success(res) {console.log('获取搜索的数据', res.data);if (res.data.status == 200) {_this.searchList = res.data.data.rows;}}, complete: function complete() {uni.hideNavigationBarLoading();uni.hideLoading();uni.stopPullDownRefresh();} });}, //页面上拉触底事件处理函数
+  onReachBottom: function onReachBottom() {var _this = this;var page = _this.page + 1;var keywords = _this.keywords;var totalPages = _this.totalPages; //如果当前需要分页的分页数和总页数相等,就不分页
+    if (page > totalPages) {return;} //分页处理
+    _this.pageSearchList(keywords, page, 15);}, methods: { pageSearchList: function pageSearchList(keywords, page, pageSize) {var _this = this;uni.showLoading({ mask: true, title: "请稍等哟~~~" });uni.showNavigationBarLoading();var serverUrl = _this.serverUrl;uni.request({ url: serverUrl + '/search/list?keywords=' + keywords + '&page=' + page + '&pageSize=' + pageSize, method: 'POST', success: function success(res) {console.log('搜索到的内容', res);if (res.data.status == 200) {_this.searchTempList = res.data.data.rows;console.log(_this.searchTempList); //数组与数组的拼接
+            _this.searchList = _this.searchList.concat(searchTempList);
+            console.log(_this.searchList);
+            //获取页数
+            _this.totalPages = res.data.data.total;
+            _this.page = page; //覆盖当前页面的page
+          }
+        } });
+
+    },
+    searchMe: function searchMe(e) {
+      var _this = this;
+      //获取搜索数据
+      var value = e.detail.value;
+      console.log(value);
+      _this.keywords = value;
+      //先初始化为空
+      _this.searchList = [];
+      _this.pageSearchList(value, 1, 15);
+    },
+
+    //查电影预告详情
+    showDetail: function showDetail(e) {
+      var detailId = e.currentTarget.dataset.detailid;
+      console.log(detailId);
+      uni.navigateTo({
+        url: "../movie/movie?detailId=" + detailId });
+
+    },
+
+    //无数据处理时,只针对固定跳转
+    showDetail2: function showDetail2() {
+      //有返回键但是没有底部导航栏
+      //页面跳转接口api
+      uni.navigateTo({
+        url: "../movie/movie" });
+
+
+      //要在tabBar里面有设置才能跳转
+      // uni.switchTab({
+      // 	url:"../me/me"
+      // })
+      // uni.reLaunch({
+      // 	url:"../movie/movie"
+      // })
+      //没有返回箭头,但是有底部导航栏
+      // uni.redirectTo({
+      // 	url:"../movie/movie"
+      // })
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
