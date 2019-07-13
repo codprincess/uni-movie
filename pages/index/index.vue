@@ -84,7 +84,12 @@
 			</view>
 		</view>
 		<view class="hot-movies page-block">
-			<video class="hot-movie-single" src="https://vfx.mtime.cn/Video/2019/07/11/mp4/190711092020039399_480.mp4" controls="">
+			<video 
+				class="hot-movie-single" 
+				src="https://vfx.mtime.cn/Video/2019/07/11/mp4/190711092020039399_480.mp4" 
+				controls=""
+				id="myVideo"
+				>
 				
 			</video>
 			<video class="hot-movie-single" src="https://vfx.mtime.cn/Video/2019/07/11/mp4/190711095403507305_480.mp4" controls="">
@@ -95,6 +100,9 @@
 				:src="item.trailer"
 				:poster="trailer.poster"
 				class="hot-movie-single"
+				:id="item.id"
+				:data-playintIndex="item.id"
+				@play="isPlaying"
 				controls>
 				
 			</video> -->
@@ -250,6 +258,13 @@
 			this.refresh();
 		},
 		
+		//视频操作,页面隐藏的时候暂停
+		onHide() {
+			if(this.videoContext){
+				this.videoContext.pause();
+			}
+		},
+		
 		onUnload(){
 			//页面卸载的时候,清楚动画数据
 			this.animationData = {};
@@ -353,6 +368,26 @@
 						uni.stopPullDownRefresh();
 					}
 				})
+				
+				
+			},
+			
+			isPlaying(e){
+				var _this = this;
+				var trailerId = "";
+				// debugger;
+				if(e){
+					trailerId = e.currentTarget.dataset.playintindex;
+					//id值是绑定的item.id
+					_this.videoContext = uni.createVideoContext(trailerId);
+				}
+				var hotTrailer = _this.hotTrailer;
+				for(var i = 0;i<hotTrailer.length;i++){
+					var tempId = hotTrailer[i].id;
+					if(tempId!=trailerId){
+						uni.createVideoContext(tempId).pause();
+					}
+				}
 				
 				
 			},
