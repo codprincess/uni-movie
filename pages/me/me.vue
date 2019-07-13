@@ -27,7 +27,9 @@
 					
 				</view>
 				<view class="set-wapper" v-if="userIsLogin">
+					<navigator url="../meInfo/meInfo">
 					<image src="../../static/icon/setting.png" class="setting"></image>
+					</navigator>
 				</view>
 			</view>
 		
@@ -38,22 +40,33 @@
 	export default {
 		data() {
 			return {
-				userIsLogin:false
+				userIsLogin:true
 			}
 		},
-		onShow() {
-			var _this = this;
-			//用户状态切换
-			var userInfo = uni.getStorageSync("globalUser");
-			if(userInfo != null && userInfo != "" && userInfo != undefined){
-				_this.userIsLogin = true;
-				//获取到用户的信息
-				_this.userInfo = userInfo;
-			}else{
-				_this.userIsLogin = false;
-				_this.userInfo = {}
-			}
-		},
+		// onShow() {
+		// 	var _this = this;
+		// 	//用户状态切换
+		// 	var userInfo = uni.getStorageSync("globalUser");
+		// 	if(userInfo != null && userInfo != "" && userInfo != undefined){
+		// 		_this.userIsLogin = true;
+		// 		//获取到用户的信息
+		// 		_this.userInfo = userInfo;
+		// 	}else{
+		// 		_this.userIsLogin = false;
+		// 		_this.userInfo = {}
+		// 	}
+		 //    //使用挂载的方法获取用户数据
+			// var userInfo = uni.getStorageSync("globalUser");
+			// if(userInfo != null){
+			// 		_this.userIsLogin = true;
+			// 		//获取到用户的信息
+			// 		_this.userInfo = userInfo;
+			// 	}else{
+			// 		_this.userIsLogin = false;
+			// 		_this.userInfo = {}
+			// 	}
+		// },
+		
 		methods: {
 			
 		}

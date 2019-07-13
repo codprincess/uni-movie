@@ -64,6 +64,10 @@
             "path" : "pages/registLogin/registLogin",
             "style" : {}
         }
+        ,{
+            "path" : "pages/meInfo/meInfo",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

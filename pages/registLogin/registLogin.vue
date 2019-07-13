@@ -56,6 +56,11 @@
 							uni.switchTab({
 								url:"../me/me"
 							})
+						}else{
+							uni.showToast({
+								title:res.data.msg,
+								duration:1000
+							})
 						}
 					}
 				})

@@ -1,0 +1,70 @@
+.page-fill{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+.page-block{
+	
+}
+.info-list{
+	padding: 0upx 30upx;
+
+}
+
+.item-wapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.face-line-upbottom{
+	margin-top: 20upx;
+	padding-top: 20upx;
+	padding-bottom: 20upx;
+}
+.info-words{
+	color: #333333;
+	font-size: 16px;
+	width: 15%;
+	line-height: 80upx;
+}
+.face{
+	width: 80upx;
+	height: 80upx;
+	border-radius: 50%;
+}
+.arrow-block{
+	margin-left: 10upx;
+	line-height: 86upx;
+}
+.arrow-ico{
+	width: 30upx;
+	height: 30upx;
+}
+.right-wapper {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+.gray-fields {
+	font-size: 14px;
+	color: darkgray;
+	line-height: 80upx;
+}
+.footer-wapper {
+	position: fixed;
+	bottom: 0;
+	
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.footer-words {
+	text-align: center;
+	background-color: white;
+	padding: 20upx;
+	
+	color: #333333;
+	font-size: 16px;
+}
+

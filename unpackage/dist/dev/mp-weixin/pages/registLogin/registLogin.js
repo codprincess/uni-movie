@@ -66,6 +66,11 @@ var _default = { data: function data() {return {};}, methods: { formSubmit: func
             uni.switchTab({
               url: "../me/me" });
 
+          } else {
+            uni.showToast({
+              title: res.data.msg,
+              duration: 1000 });
+
           }
         } });
 
