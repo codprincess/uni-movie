@@ -210,6 +210,52 @@
 				}
 			})
 		},
+		
+		//分享转发,只能在微信小程序端
+		onShareAppMessage(res) {
+			var _this = this;
+			return {
+				// title:_this.searchInfo.name,
+				// path:'/page/movie/movie?id='+_this.searchInfo.id ,
+				title:'分享啦~~~~',
+				path:'/page/movie/movie' 
+			}
+		},
+		
+		
+		//监听原生标题
+		onNavigationBarButtonTap(e) {
+			var index = e.index;
+			console.log(index);
+			var _this = this;
+			var searchInfo = _this.searchInfo;
+			var searchId = searchInfo.id;
+			var searchName = searchInfo.name;
+			var cover = searchInfo.cover;
+			var poster = searchInfo.poster;
+			//index为0为分享
+			if(index == 0){
+				uni.share({
+					provider: "weixin",
+					scene: "WXSceneTimeline",
+					type: 0,
+					title:"电影预告",
+					href:"http://192.168.0.108:8080/#/pages/movie/movie",
+					// href: "http://192.168.0.108:8080/#/pages/movie/movie?searchId="+searchId,
+					summary: "我正在使用HBuilderX开发uni-app，赶紧跟我一起来体验！",
+					imageUrl: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png",
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					},
+					fail: function (err) {
+						console.log("fail:" + JSON.stringify(err));
+					}
+				});
+			}
+		},
+		
+		
+		
 		methods: {
 			
 			//点击预览剧照

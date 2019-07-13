@@ -27,6 +27,14 @@
 			// 	backgroundColor:"#000000"
 			// })
 		},
+		
+		//分享转发功能
+		// onShareAppMessage(res) {
+		// 	return {
+		// 		title:'分享转发的标题',
+		// 		path:'/page/test/test?id='+this.id 
+		// 	}
+		// },
 		methods: {
 			operator(){
 				var _this = this;

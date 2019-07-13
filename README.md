@@ -24,4 +24,5 @@ uni-movie,uni-app应用实战
 #### 自定义预览
 #### actionSheet的接口使用,长按操作
 #### 下载保存图片
-#### 
+#### 配置https下载合法域名(配置小程序服务器域名:https://www.movie.com:99)端口号设置为99
+#### 实现小程序分享转发功能(onNavigationBarButtonTap,uni.share)
