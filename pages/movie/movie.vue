@@ -3,6 +3,7 @@
 		<!--视频播放-->
 		<view class="player">
 			<video 
+				id="myVideo"
 				src="https://vfx.mtime.cn/Video/2019/07/10/mp4/190710093032891410_480.mp4"
 				class="movie"
 				controls
@@ -155,6 +156,24 @@
 				newStaffArray:[]
 				
 			}
+		},
+		
+		//页面渲染完成之后,获得视频上下文对象
+		onReady() {
+			this.videoContext = uni.createVideoContext('myVideo');
+		},
+		
+		onHide() {
+			//页面被隐藏的时候,暂停播放
+			this.videoContext.pause();
+		},
+		
+		onShow() {
+			//当页面再次显示的时候,可以继续播放
+			if(this.videoContext){
+				this.videoContext.play();
+			}
+			
 		},
 		
 		onLoad(params) {
