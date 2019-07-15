@@ -1,5 +1,5 @@
 # uni-movie
-uni-movie,uni-app应用实战
+uni-app知识点\组件\接口实例,uni-app从入门到会用![](README_files/1.png)\(^o^)/~
 # 流程
 #### flex的布局
 #### swiper轮播图
@@ -37,3 +37,4 @@ uni-movie,uni-app应用实战
 #### 头像的预览和上传头像
 #### 图片剪裁,引入剪裁demo即可
 #### 用户信息的修改
+#### 更新中.......
