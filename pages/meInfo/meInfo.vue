@@ -135,9 +135,18 @@
 									console.log(res);
 									//获得临时路径
 									var tempFilePath = res.tempFilePaths[0];
+									
+									// #ifdef H5
 									uni.navigateTo({
 										url: "../meFace/meFace?tempFilePath=" + tempFilePath
 									})
+									// #endif
+									//图片剪裁
+									// #ifndef H5
+										uni.navigateTo({
+											url: "../faceCrop/faceCrop?tempFilePath=" + tempFilePath
+										})
+									// #endif
 								}
 							})
 							

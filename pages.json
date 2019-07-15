@@ -76,6 +76,10 @@
 				"navigationBarBackgroundColor": "#ffd655"
 			}
         }
+        ,{
+            "path" : "pages/faceCrop/faceCrop",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
