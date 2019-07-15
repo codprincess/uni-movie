@@ -68,6 +68,14 @@
             "path" : "pages/meInfo/meInfo",
             "style" : {}
         }
+        ,{
+            "path" : "pages/meFace/meFace",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "上传头像",
+				"navigationBarBackgroundColor": "#ffd655"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

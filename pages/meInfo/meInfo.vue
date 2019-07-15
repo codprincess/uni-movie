@@ -2,7 +2,7 @@
 	<view class="page page-fill">
 		<view class="page-block info-list">
 			<!--头像-->
-			<view class="item-wapper face-line-upbottom">
+			<view class="item-wapper face-line-upbottom" @click="operator">
 				<view class="info-words">头像</view>
 				<view class="right-wapper">
 					<image class="face" src="../../static/icon/default-face.png"></image>
@@ -103,6 +103,44 @@
 							uni.switchTab({
 								url:"../me/me"
 							})
+						}
+					}
+				})
+			},
+			
+			//预览和修改用户头像
+			operator(){
+				var _this = this;
+				var globalUser = _this.getGlobalUser("globalUser");
+				uni.showActionSheet({
+					itemList:["查看头像","从相册中选择"],
+					success(res) {
+						console.log(res);
+						var index = res.tapIndex;
+						if(index == 0){
+							//预览头像
+							var faceArr = [];
+							faceArr.push(globalUser.faceImage);
+							uni.previewImage({
+								urls:faceArr,
+								current:faceArr[0]
+							})
+						}else if(index == 1){
+							//选择上传头像
+							uni.chooseImage({
+								count:1,
+								sizeType:["compressed"],
+								sourceType:["album"],
+								success(res) {
+									console.log(res);
+									//获得临时路径
+									var tempFilePath = res.tempFilePaths[0];
+									uni.navigateTo({
+										url: "../meFace/meFace?tempFilePath=" + tempFilePath
+									})
+								}
+							})
+							
 						}
 					}
 				})
