@@ -17,7 +17,7 @@
 			</view>
 			
 			<!--昵称-->
-			<view class="item-wapper">
+			<view class="item-wapper" @click="modifyNickname">
 				<view class="info-words">昵称</view>
 				<view class="right-wapper">
 					<view class="gray-fields">傻啦吧唧</view>
@@ -32,7 +32,7 @@
 			</view>
 			
 			<!--生日-->
-			<view class="item-wapper">
+			<view class="item-wapper"  @click="modifyBirthday">
 				<view class="info-words">生日</view>
 				<view class="right-wapper">
 					<view class="gray-fields">1999-12-19</view>
@@ -46,7 +46,7 @@
 			</view>
 			
 			<!--性别-->
-			<view class="item-wapper">
+			<view class="item-wapper" @click="modifySex">
 				<view class="info-words">性别</view>
 				<view class="right-wapper">
 					<view class="gray-fields">
@@ -81,6 +81,24 @@
 			}
 		},
 		methods: {
+			//跳转
+			modifyNickname(){
+				uni.navigateTo({
+					url:"../meNickname/meNickname"
+				})
+			},
+			
+			modifyBirthday(){
+				uni.navigateTo({
+					url:"../meBirthday/meBirthday"
+				})
+			},
+			modifySex(){
+				uni.navigateTo({
+					url:"../sex/sex"
+				})
+			},
+			
 			//清楚缓存
 			cleanStorage(){
 				uni.clearStorageSync();

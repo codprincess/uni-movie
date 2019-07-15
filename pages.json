@@ -80,6 +80,26 @@
             "path" : "pages/faceCrop/faceCrop",
             "style" : {}
         }
+        ,{
+            "path" : "pages/meNickname/meNickname",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "我的昵称",
+				"navigationBarBackgroundColor": "#cccccc"
+			}
+        }
+        ,{
+            "path" : "pages/meBirthday/meBirthday",
+            "style" : {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "我的生日",
+				"navigationBarBackgroundColor": "#cccccc"
+			}
+        }
+        ,{
+            "path" : "pages/sex/sex",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
