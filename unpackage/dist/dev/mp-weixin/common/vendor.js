@@ -495,7 +495,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -6671,7 +6671,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -6692,14 +6692,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -6768,7 +6768,7 @@ var patch = function(oldVnode, vnode) {
         });
         var diffData = diff(data, mpData);
         if (Object.keys(diffData).length) {
-            if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+            if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
                 console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
                     ']差量更新',
                     JSON.stringify(diffData));
@@ -7266,7 +7266,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var serverUrl = "http://www.imovietrailer.com/superhero"; //生产环境
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var serverUrl = "http://www.xxxxxxx.com/xxxxx"; //生产环境
 var _default =
 {
   serverUrl: serverUrl };exports.default = _default;
@@ -7287,7 +7287,7 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "F:\\学习�
 
 _vue.default.config.productionTip = false;
 //挂载
-_vue.default.prototype.serverUrl = "http://www.imovietrailer.com/superhero";
+_vue.default.prototype.serverUrl = "http://www.xxxxxxx.com/xxxxx";
 
 _vue.default.prototype.getGlobalUser = function (key) {
   var userInfo = uni.getStorageSync("globalUser");
@@ -7358,6 +7358,23 @@ createPage(_cover.default);
 
 /***/ }),
 
+/***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2FfaceCrop%2FfaceCrop\"}":
+/*!************************************************************************!*\
+  !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2FfaceCrop%2FfaceCrop"} ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "F:\\学习教程\\uni-movie\\pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _faceCrop = _interopRequireDefault(__webpack_require__(/*! ./pages/faceCrop/faceCrop.vue */ "F:\\学习教程\\uni-movie\\pages\\faceCrop\\faceCrop.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_faceCrop.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2Findex%2Findex\"}":
 /*!******************************************************************!*\
   !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2Findex%2Findex"} ***!
@@ -7392,6 +7409,40 @@ createPage(_me.default);
 
 /***/ }),
 
+/***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2FmeBirthday%2FmeBirthday\"}":
+/*!****************************************************************************!*\
+  !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2FmeBirthday%2FmeBirthday"} ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "F:\\学习教程\\uni-movie\\pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _meBirthday = _interopRequireDefault(__webpack_require__(/*! ./pages/meBirthday/meBirthday.vue */ "F:\\学习教程\\uni-movie\\pages\\meBirthday\\meBirthday.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_meBirthday.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2FmeFace%2FmeFace\"}":
+/*!********************************************************************!*\
+  !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2FmeFace%2FmeFace"} ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "F:\\学习教程\\uni-movie\\pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _meFace = _interopRequireDefault(__webpack_require__(/*! ./pages/meFace/meFace.vue */ "F:\\学习教程\\uni-movie\\pages\\meFace\\meFace.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_meFace.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2FmeInfo%2FmeInfo\"}":
 /*!********************************************************************!*\
   !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2FmeInfo%2FmeInfo"} ***!
@@ -7405,6 +7456,23 @@ createPage(_me.default);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
 var _meInfo = _interopRequireDefault(__webpack_require__(/*! ./pages/meInfo/meInfo.vue */ "F:\\学习教程\\uni-movie\\pages\\meInfo\\meInfo.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_meInfo.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2FmeNickname%2FmeNickname\"}":
+/*!****************************************************************************!*\
+  !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2FmeNickname%2FmeNickname"} ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "F:\\学习教程\\uni-movie\\pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _meNickname = _interopRequireDefault(__webpack_require__(/*! ./pages/meNickname/meNickname.vue */ "F:\\学习教程\\uni-movie\\pages\\meNickname\\meNickname.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_meNickname.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
@@ -7456,6 +7524,23 @@ createPage(_registLogin.default);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
 var _search = _interopRequireDefault(__webpack_require__(/*! ./pages/search/search.vue */ "F:\\学习教程\\uni-movie\\pages\\search\\search.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_search.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "F:\\学习教程\\uni-movie\\main.js?{\"page\":\"pages%2Fsex%2Fsex\"}":
+/*!**************************************************************!*\
+  !*** F:/学习教程/uni-movie/main.js?{"page":"pages%2Fsex%2Fsex"} ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "F:\\学习教程\\uni-movie\\pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _sex = _interopRequireDefault(__webpack_require__(/*! ./pages/sex/sex.vue */ "F:\\学习教程\\uni-movie\\pages\\sex\\sex.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_sex.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),

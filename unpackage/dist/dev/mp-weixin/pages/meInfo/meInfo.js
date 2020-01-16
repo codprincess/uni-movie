@@ -157,8 +157,31 @@ var _common = _interopRequireDefault(__webpack_require__(/*! ../../common/common
 //
 //
 //
-var _default = { data: function data() {return { sex: 1 };}, methods: { //清楚缓存
-    cleanStorage: function cleanStorage() {uni.clearStorageSync();uni.showToast({ title: "清楚缓存成功", mask: false, duration: 1500 });}, logout: function logout() {var globalUser = this.getGlobalUser("globalUser");var serverUrl = _common.default.serverUrl;uni.request({ url: serverUrl + '/user/logout?userId=' + globalUser.id, method: "POST", success: function success(res) {console.log(res);if (res.data.status == 200) {uni.removeStorageSync("globalUser");uni.switchTab({ url: "../me/me" });}} });} } };exports.default = _default;
+var _default = { data: function data() {return { sex: 1 };}, methods: { //跳转
+    modifyNickname: function modifyNickname() {uni.navigateTo({ url: "../meNickname/meNickname" });}, modifyBirthday: function modifyBirthday() {uni.navigateTo({ url: "../meBirthday/meBirthday" });}, modifySex: function modifySex() {uni.navigateTo({ url: "../sex/sex" });}, //清楚缓存
+    cleanStorage: function cleanStorage() {uni.clearStorageSync();uni.showToast({ title: "清楚缓存成功", mask: false, duration: 1500 });}, logout: function logout() {var globalUser = this.getGlobalUser("globalUser");var serverUrl = _common.default.serverUrl;uni.request({ url: serverUrl + '/user/logout?userId=' + globalUser.id, method: "POST", success: function success(res) {console.log(res);if (res.data.status == 200) {uni.removeStorageSync("globalUser");uni.switchTab({ url: "../me/me" });}} });}, //预览和修改用户头像
+    operator: function operator() {var _this = this;var globalUser = _this.getGlobalUser("globalUser");uni.showActionSheet({ itemList: ["查看头像", "从相册中选择"], success: function success(res) {console.log(res);var index = res.tapIndex;if (index == 0) {//预览头像
+            var faceArr = [];faceArr.push(globalUser.faceImage);uni.previewImage({ urls: faceArr, current: faceArr[0] });} else if (index == 1) {//选择上传头像
+            uni.chooseImage({ count: 1, sizeType: ["compressed"], sourceType: ["album"], success: function success(res) {console.log(res); //获得临时路径
+                var tempFilePath = res.tempFilePaths[0];
+
+
+
+
+
+                //图片剪裁
+
+                uni.navigateTo({
+                  url: "../faceCrop/faceCrop?tempFilePath=" + tempFilePath });
+
+
+              } });
+
+
+          }
+        } });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),

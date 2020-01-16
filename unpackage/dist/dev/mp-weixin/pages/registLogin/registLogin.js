@@ -147,6 +147,68 @@ var _default = { data: function data() {return {};}, methods: { formSubmit: func
 
         } });
 
+    },
+
+    //第三方app登录qq\微信\微博
+    appOAuthLogin: function appOAuthLogin(e) {
+      var _this = this;
+      var logintype = e.currentTarget.dataset.logintype;
+      console.log(logintype);
+      //授权登录
+      uni.request({
+        provider: logintype,
+        success: function success(loginRes) {
+          //授权登录成功之后,获取用户信息
+          uni.getUserInfo({
+            provider: logintype,
+            success: function success(info) {
+              //获取登录用户信息
+              //console.log(JSON.stringify(info))
+              var userInfo = info.userInfo;
+              var face = "";
+              var nickName = "";
+              var openIdOrUid = "";
+              if (logintype == "weixin") {
+                face = userInfo.avatarUrl;
+                nickName = userInfo.nickName;
+                openIdOrUid = userInfo.openid;
+              } else if (logintype == "qq") {
+                face = userInfo.figureurl_qq_2;
+                nickName = userInfo.nickName;
+                openIdOrUid = userInfo.openid;
+              } else if (logintype == "sinaweibo") {
+                face = userInfo.avatarUrl_large;
+                nickName = userInfo.nickName;
+                openIdOrUid = userInfo.openid;
+              }
+
+              //调用开发者后台,执行一键注册或登录
+              uni.request({
+                url: _this.serverUrl + '/appUniLogin/' + logintype,
+                data: {
+                  "openIdOrUid": openIdOrUid,
+                  "nickName": nickName,
+                  "face": face },
+
+                method: "POST",
+                success: function success(result) {
+                  console.log(result);
+                  if (result.data.status == 200) {
+                    var userInfo = result.data.data;
+                    //保存用户表信息在缓存中
+                    uni.setStorageSync("globalUser", userInfo);
+                    //切换页面跳转
+                    uni.switchTab({
+                      url: "../me/me" });
+
+                  }
+                } });
+
+
+            } });
+
+        } });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
